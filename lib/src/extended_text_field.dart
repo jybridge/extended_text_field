@@ -721,7 +721,11 @@ class _ExtendedTextFieldState extends State<ExtendedTextField>
         _editableText.hideToolbar();
       },
       showToolbar: () {
-        _editableText.showToolbar();
+		if (!selectionEnabled && !_effectiveFocusNode.hasFocus) {
+          _requestKeyboard();
+        } else {
+          _editableText.showToolbar();
+        }
       },
       onTap: widget.onTap,
       context: context,
